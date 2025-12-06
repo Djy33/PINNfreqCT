@@ -37,7 +37,8 @@ def combine_time_freq(time, freq):
 
 
 #一个心跳周期的完整波形（BIOZ/ECG/PPG） → 对应一个收缩压（Sys）
-df_demo_data = pd.read_pickle('data_demo_pinn_bioz_bp',compression='gzip')
+df_demo_data = pd.read_pickle('../data_demo_pinn_bioz_bp',compression='gzip')#noise.py运行时
+# df_demo_data = pd.read_pickle('data_demo_pinn_bioz_bp',compression='gzip')#main.py运行时
 df_demo_data['bioz_stft'] = df_demo_data['bioz_beats'].apply(
     lambda x: compute_stft(x, nfft=32, hoplength=8)
 )
