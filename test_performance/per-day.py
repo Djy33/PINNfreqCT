@@ -198,7 +198,7 @@ class DataPipeline:
         # TFdata: np.concatenate([time, freq], axis=0).T
         # time=(1, T), freq=(F, T). concat=(1+F, T). T=(T, 1+F).
         # 所以第 0 列是 time (beat)，后面是 freq.
-        # 我们这里 beats_sc 是 (N, T), stft_sc 是 (N, T, F).
+        # 这里 beats_sc 是 (N, T), stft_sc 是 (N, T, F).
         # axis=2 concat. -> (N, T, 1+F)
         X_comb = np.concatenate([beats_sc[:, :, None], stft_sc], axis=2)
 
@@ -235,7 +235,6 @@ def run_finetuning():
     model_pinn = tf.keras.models.load_model(os.path.join(MODEL_LOAD_DIR, "PINNfreq.h5"))
     optimizer_pinn = tf.keras.optimizers.Adam(LR_FINETUNE)
 
-    # !!! 修复点：使用 tuple(train_in) 或 字典 !!!
     # train_in 是个 list，直接传会被打包报错。转为 tuple 则会被视为多个独立的输入。
     ds_pinn = tf.data.Dataset.from_tensor_slices((
         tuple(train_in),  # <--- 关键修改：变成元组 (beat, u1, u2, u3)

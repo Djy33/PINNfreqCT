@@ -12,7 +12,7 @@ def create_shared_encoder(T, F, N_EXT=64):
     """创建共享的 Beat 时频数据编码器"""
     inp_beat = Input(shape=(T, F))
 
-    # Conv1D Layers
+    # Conv2D Layers
     cnn1_1 = Conv1D(32, 5, activation='relu')(inp_beat)
     cnn1_2 = Conv1D(64, 3, activation='relu')(cnn1_1)
     mp_cnn1 = MaxPooling1D(pool_size=3, strides=1)(cnn1_2)
@@ -46,7 +46,7 @@ def model_PINN_TCC(T, F, N_EXT=64, D_C=60):
     # 共享的预测头：从拼接特征到预测输出
     inp_feat_comb = Input(shape=(N_EXT + 3,), name='feat_comb_input')
 
-    # --- 输出 2: 上下文特征 C for L_SCC/L_CC ---
+    # --- 输出 2: 上下文特征 C for L_CC ---
     C = Dense(D_C, activation='relu', name='Context_Feature')(inp_feat_comb)
     # --- 输出 3: 最终预测 Y_NN ---
     y_nn = Dense(1, name='Prediction')(C)
