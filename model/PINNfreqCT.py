@@ -67,7 +67,7 @@ def pinn_freq_ct():
     DELTA = 0.7  # L_CC 权重
 
 
-    epochs = 50000
+    epochs = 5000
     for epoch in range(epochs):
     # --- 1. 准备增强输入 ---
     # 对小批量训练集 (L) 进行增强

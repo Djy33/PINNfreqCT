@@ -36,9 +36,13 @@ def combine_time_freq(time, freq):
     return combined.T
 
 
+# 1. 获取当前代码文件的绝对路径
+current_file_path = os.path.abspath(__file__)
+# 2. 获取代码文件所在的目录
+current_dir = os.path.dirname(current_file_path)
+data_path = os.path.join(current_dir, "data_demo_pinn_bioz_bp")
 #一个心跳周期的完整波形（BIOZ/ECG/PPG） → 对应一个收缩压（Sys）
-df_demo_data = pd.read_pickle('../data_demo_pinn_bioz_bp',compression='gzip')#noise.py运行时
-# df_demo_data = pd.read_pickle('data_demo_pinn_bioz_bp',compression='gzip')#main.py运行时
+df_demo_data = pd.read_pickle(data_path,compression='gzip')
 df_demo_data['bioz_stft'] = df_demo_data['bioz_beats'].apply(
     lambda x: compute_stft(x, nfft=32, hoplength=8)
 )

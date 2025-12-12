@@ -61,9 +61,14 @@ def load_losses(load_path="./saved/loss/losses_CNN.pkl"):
 
 
 
-# load an example data for demo
-df_demo_data = pd.read_pickle('data_demo_pinn_bioz_bp',compression='gzip')
+# 1. 获取当前代码文件的绝对路径
+current_file_path = os.path.abspath(__file__)
+# 2. 获取代码文件所在的目录
+current_dir = os.path.dirname(current_file_path)
+data_path = os.path.join(current_dir, "../data_demo_pinn_bioz_bp")
 #一个心跳周期的完整波形（BIOZ/ECG/PPG） → 对应一个收缩压（Sys）
+df_demo_data = pd.read_pickle(data_path,compression='gzip')
+
 # Initialize a SEED value to ensure that the random processes in the code can be reproduced.
 SEED = 123
 # Call the function with seed value

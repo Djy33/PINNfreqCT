@@ -54,9 +54,17 @@ def create_comparison_plot(models_to_compare, filename, title):
     figure_settings(s2)
 
     # 组合并保存
-    result = row(s, s2)
-    save(result, filename=f"fig/{filename}")
-    print(f" Comparison saved to fig/{filename}")
+    # result = row(s, s2)
+    # 设置 SVG 输出
+    s.output_backend = "svg"
+    s2.output_backend = "svg"
+
+    # 保存 HTML（可选）
+    # save(result, filename=f"fig/{filename}.html")
+
+    # 保存 SVG + PDF
+    save_svg_and_pdf(s, filename)
+    # print(f" Comparison saved to fig/{filename}")
 
 
 if __name__ == '__main__':
@@ -124,4 +132,11 @@ if __name__ == '__main__':
         (model_dnn_pinnfreq, inp_comb_test_ft_domain, PINNfreq.loss_list_pinn, PINNfreq.test_loss_list_pinn, 'PINNfreq', palettes.Colorblind8[5], False),
         (model_dnn_pinnfreqct, inp_comb_test_w_s, PINNfreqCT.loss_list_hybrid, PINNfreqCT.test_loss_list_hybrid, 'PINNfreqCT', palettes.Colorblind8[3], True)
     ]
-    create_comparison_plot(comparison_3, "PINNfreq_vs_PINNfreqCT.html", "对比学习性能对比")
+    create_comparison_plot(comparison_3, "PINNfreq_vs_PINNfreqCT.html", "对比学习性能对比")    # --- 目标对比 3+: PINN vs PINNfreqCT ---
+    # 目的: 对比加入对比学习机制的 PINN 模型 (PINNfreqCT) 的效果
+    # ====================================================================
+    comparison_33 = [
+        (model_dnn_pinn, inp_comb_test_t_domain, PINN.loss_list_pinn, PINN.test_loss_list_pinn, 'PINN', palettes.Colorblind8[5], False),
+        (model_dnn_pinnfreqct, inp_comb_test_w_s, PINNfreqCT.loss_list_hybrid, PINNfreqCT.test_loss_list_hybrid, 'PINNfreqCT', palettes.Colorblind8[3], True)
+    ]
+    create_comparison_plot(comparison_33, "PINN_vs_PINNfreqCT", "Performance Comparison of all module")

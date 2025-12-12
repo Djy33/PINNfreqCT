@@ -1,0 +1,32 @@
+Testing Noise Level: 0.0
+2025-12-12 12:03:38.214344: I tensorflow/stream_executor/cuda/cuda_dnn.cc:366] Loaded cuDNN version 8100
+2025-12-12 12:05:01.365129: W tensorflow/stream_executor/gpu/redzone_allocator.cc:314] INTERNAL: ptxas exited with non-zero error code -1, output: 
+Relying on driver to perform ptx compilation. 
+Modify $PATH to customize ptxas location.
+This message will be only logged once.
+2025-12-12 12:05:02.629160: I tensorflow/stream_executor/cuda/cuda_blas.cc:1774] TensorFloat-32 will be used for the matrix multiplication. This will only be logged once.
+  RMSE -> base: 5.33 | PINN: 5.37 | CT: 6.00
+Saved SVG: fig/noise_comparison_0.0.svg
+Saved PDF: fig/noise_comparison_0.0.pdf
+Testing Noise Level: 0.1
+  RMSE -> base: 7.51 | PINN: 5.51 | CT: 6.51
+Saved SVG: fig/noise_comparison_0.1.svg
+Saved PDF: fig/noise_comparison_0.1.pdf
+Testing Noise Level: 0.2
+  RMSE -> base: 11.56 | PINN: 6.22 | CT: 7.52
+Saved SVG: fig/noise_comparison_0.2.svg
+Saved PDF: fig/noise_comparison_0.2.pdf
+Testing Noise Level: 0.3
+  RMSE -> base: 16.92 | PINN: 7.29 | CT: 9.11
+Saved SVG: fig/noise_comparison_0.3.svg
+Saved PDF: fig/noise_comparison_0.3.pdf
+Testing Noise Level: 0.4
+  RMSE -> base: 21.46 | PINN: 8.97 | CT: 10.13
+Saved SVG: fig/noise_comparison_0.4.svg
+Saved PDF: fig/noise_comparison_0.4.pdf
+Testing Noise Level: 0.5
+  RMSE -> base: 29.17 | PINN: 10.11 | CT: 10.89
+Saved SVG: fig/noise_comparison_0.5.svg
+Saved PDF: fig/noise_comparison_0.5.pdf
+Saved SVG: fig/noise_metrics_summary.svg
+Saved PDF: fig/noise_metrics_summary.pdf
